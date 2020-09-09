@@ -146,7 +146,7 @@ add_library(rmm SHARED "${CNMEM_SOURCE_DIR}/cnmem.cpp")
 set_target_properties(rmm PROPERTIES BUILD_RPATH "\$ORIGIN")
 
 target_include_directories(rmm PUBLIC
-  "${THRUST_INCLUDE_DIR}"
+  "$<BUILD_INTERFACE:${THRUST_INCLUDE_DIR}>"
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include>"
   )
@@ -199,7 +199,9 @@ target_link_libraries(rmm PUBLIC spdlog::spdlog_header_only)
 install(TARGETS rmm
         DESTINATION lib)
 
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/rmm
+install(DIRECTORY
+          ${CMAKE_CURRENT_SOURCE_DIR}/include/rmm
+          ${THRUST_INCLUDE_DIR}/thrust
         DESTINATION include)
 
 ###################################################################################################

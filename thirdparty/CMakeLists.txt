@@ -51,4 +51,7 @@ if(NOT thrust_POPULATED)
   FetchContent_Populate(thrust)
   # We are not using the thrust CMake targets, so no need to call `add_subdirectory()`.
 endif()
-set(THRUST_INCLUDE_DIR "${thrust_SOURCE_DIR}" PARENT_SCOPE)
+
+# Make THRUST_INCLUDE_DIR available as cache variable
+set(THRUST_INCLUDE_DIR "${thrust_SOURCE_DIR}" CACHE INTERNAL "" FORCE)
+mark_as_advanced(THRUST_INCLUDE_DIR)
