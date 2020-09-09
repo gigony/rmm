@@ -34,6 +34,10 @@ if(NOT spdlog_POPULATED)
   add_subdirectory(${spdlog_SOURCE_DIR} ${spdlog_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
+# Make SPDLOG_INCLUDE_DIR available as cache variable
+set(SPDLOG_INCLUDE_DIR "${spdlog_SOURCE_DIR}/include" CACHE INTERNAL "" FORCE)
+mark_as_advanced(SPDLOG_INCLUDE_DIR)
+
 ###################################################################################################
 # - thrust/cub ------------------------------------------------------------------------------------
 
